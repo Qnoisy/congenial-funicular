@@ -1,0 +1,220 @@
+@mixin flex-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+@mixin text-color($color-var, $transition-time: 200ms, $text-shadow: none) {
+	color: var($color-var);
+	transition: color $transition-time linear;
+	text-shadow: $text-shadow;
+	&,
+	* {
+		color: var($color-var);
+	}
+}
+@mixin text-base {
+	@include text-color(--text-color);
+}
+@mixin text-hover {
+	@media (hover: hover) {
+		&:hover {
+			@include text-color(--text-color-hover, 100ms, 0 0 50px white);
+		}
+	}
+	@media (hover: none) {
+		&:hover {
+			@include text-color(--text-color-hover, 100ms, 0 0 50px white);
+		}
+	}
+}
+
+@mixin text-secondary {
+	@include text-color(--text-color-second);
+}
+
+@mixin text-secondary-hover {
+	@media (hover: hover) {
+		&:hover {
+			@include text-color(--text-color-second-hover);
+		}
+	}
+	@media (hover: none) {
+		&:hover {
+			@include text-color(--text-color-second-hover);
+		}
+	}
+}
+
+@mixin background-color($background-var, $text-color-var: --text-color) {
+	background-color: var($background-var);
+	transition: background-color 200ms linear;
+	@include text-color($text-color-var);
+}
+
+@mixin background-primary {
+	@include background-color(--background-color);
+}
+
+@mixin background-secondary {
+	@include background-color(--second-background-color, --text-color-second);
+}
+
+@mixin background-tertiary {
+	@include background-color(--third-background-color);
+}
+
+@mixin button-style {
+	color: var(--button-text-color);
+	background-color: var(--button-background-color);
+	border: 2px solid var(--button-border-color);
+	transition: all 0.3s ease;
+
+	@media (hover: hover) {
+		&:hover {
+			@include text-color(--button-text-color-hover, 0.3s);
+			background-color: var(--button-background-color-hover);
+			border-color: var(--button-border-color);
+		}
+	}
+
+	@media (hover: none) {
+		&:active {
+			@include text-color(--button-text-color-hover, 0.3s);
+			background-color: var(--button-background-color-hover);
+			border-color: var(--button-border-color);
+		}
+	}
+}
+
+html[data-theme='light'] {
+	--button-text-color: #333333;
+	--button-text-color-hover: #ffffff;
+	--button-background-color: #ffffff;
+	--button-background-color-hover: #a8c0e6; // светлый голубой, соответствует градиенту
+	--button-border-color: #bcced9; // светло-голубой
+
+	--background-color: #e0eafc; // основной цвет фона, светло-сиреневый
+	--second-background-color: #cfdef3; // вторичный цвет фона, мягкий голубой
+	--third-background-color: #b3e5fc; // третий цвет фона, яркий голубой
+
+	--text-color: #333333; // темно-серый для текста
+	--text-color-hover: #000000; // черный для наведения
+	--text-color-second: #666666; // средне-серый
+	--text-color-second-hover: #888888; // светло-серый
+
+	@include background-primary;
+	@include text-base;
+	@include text-secondary;
+	@include text-secondary-hover;
+}
+
+html[data-theme='dark'] {
+	--button-text-color: #cccccc;
+	--button-text-color-hover: #ffffff;
+	--button-background-color: #2a2f3a; // темно-серый, более темный оттенок
+	--button-background-color-hover: #3d4451; // еще более темный серо-синий
+	--button-border-color: #414a59; // темный серый
+
+	--background-color: #252931; // очень темный серо-синий
+	--second-background-color: #1e2229; // более темный серый
+	--third-background-color: #313943; // темный серо-синий
+
+	--text-color: #e0e0e0; // светло-серый для текста
+	--text-color-hover: #ffffff; // белый для наведения
+	--text-color-second: #a2aabc; // светло-серый
+	--text-color-second-hover: #bcbecf; // еще более светлый серый
+
+	@include background-primary;
+	@include text-base;
+	@include text-secondary;
+	@include text-secondary-hover;
+}
+
+@mixin flex-gap($gap: 1rem, $direction: row, $align: center, $justify: center) {
+	display: flex;
+	flex-direction: $direction;
+	gap: $gap;
+	align-items: $align;
+	justify-content: $justify;
+}
+
+@mixin box-shadow(
+	$x: 0,
+	$y: 2px,
+	$blur: 8px,
+	$spread: 0,
+	$color: rgba(0, 0, 0, 0.2)
+) {
+	box-shadow: $x $y $blur $spread $color;
+}
+
+@mixin transition($property: all, $duration: 300ms, $timing-function: ease) {
+	transition: $property $duration $timing-function;
+}
+
+@mixin neumorphism(
+	$light-color: rgba(255, 255, 255, 0.5),
+	$dark-color: rgba(0, 0, 0, 0.2),
+	$inset: false
+) {
+	$shadow-inset: if($inset, 'inset', '');
+	box-shadow: -5px -5px 10px $light-color $shadow-inset,
+		5px 5px 10px $dark-color $shadow-inset;
+	border-radius: 10px; // Можно адаптировать под нужные размеры
+}
+
+@mixin animated-gradient {
+	background-size: 400% 400%;
+	animation: GradientAnimation 8s ease infinite;
+
+	@keyframes GradientAnimation {
+		0% {
+			background-position: 0% 50%;
+		}
+		50% {
+			background-position: 100% 50%;
+		}
+		100% {
+			background-position: 0% 50%;
+		}
+	}
+}
+
+@mixin gradient-black {
+	background-image: linear-gradient(to right, #000000, #434343);
+	@include neumorphism;
+}
+
+@mixin gradient-lilac {
+	background-image: linear-gradient(to right, #b8c6e5, #cfdef3);
+	@include animated-gradient;
+}
+
+@mixin glass-background {
+	background: rgba(255, 255, 255, 0.2);
+	box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.15),
+		-8px -8px 15px rgba(255, 255, 255, 0.15),
+		inset 5px 5px 10px rgba(0, 0, 0, 0.05),
+		inset -5px -5px 10px rgba(255, 255, 255, 0.05);
+	backdrop-filter: blur(5px);
+	-webkit-backdrop-filter: blur(5px);
+}
+
+#root {
+	height: 100%;
+	width: 100%;
+}
+
+.wrapper {
+	@include gradient-lilac;
+	display: flex;
+	overflow-x: hidden;
+	flex-direction: column;
+	min-height: 100%;
+
+	transition: background-color 200ms linear;
+
+	font-family: Arial, Helvetica, sans-serif;
+	line-height: 1.4rem;
+	font-size: 1rem;
+}

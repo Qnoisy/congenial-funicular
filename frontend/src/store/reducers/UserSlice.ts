@@ -1,14 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IUser } from '../../models/IUser';
 
-interface UserState {
-	users: IUser[];
-	isLoading: boolean;
-	error: string;
-}
-
-const initialState: UserState = {
-	users: [],
+const initialState: IUser = {
+	isAuth: false,
 	isLoading: false,
 	error: '',
 };
@@ -17,18 +11,25 @@ export const userSlice = createSlice({
 	name: 'user',
 	initialState,
 	reducers: {
-		usersFetching(state) {
+		userIsAuth(state) {
 			state.isLoading = true;
 		},
-		usersFetchingSuccess(state, action: PayloadAction<IUser[]>) {
+		userIsAuthSuccess(state, action: PayloadAction<boolean>) {
 			state.isLoading = false;
 			state.error = '';
-			state.users = action.payload;
+			state.isAuth = action.payload;
 		},
-		usersFetchingError(state, action: PayloadAction<string>) {
+		userIsAuthError(state, action: PayloadAction<string>) {
 			state.isLoading = false;
 			state.error = action.payload;
+			state.isAuth = false;
 		},
+		userLogout(state) {
+			state.isAuth = false;
+		},
+		// userRegister: place for future registration implementation
+		// userRegisterSuccess: place for future registration implementation
+		// userRegisterError: place for future registration implementation
 	},
 });
 

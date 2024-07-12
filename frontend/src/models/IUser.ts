@@ -1,5 +1,5 @@
 export interface IUser {
-    id: number;
-    name: string;
-    email: string;
+	isAuth: boolean;
+	isLoading: boolean;
+	error: string;
 }

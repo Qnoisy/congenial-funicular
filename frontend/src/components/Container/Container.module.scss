@@ -1,0 +1,36 @@
+@import '../../common/generall';
+@import '../../common/generall';
+
+.container {
+	width: calc(100% - 2rem);
+	margin-inline: auto;
+	padding: 1rem 0;
+
+	@media (min-width: 400.98px) {
+		width: calc(100% - 3rem);
+		padding: 1.5rem 0;
+	}
+	@media (min-width: 767.98px) {
+		width: calc(100% - 8rem);
+		padding: 4rem 0;
+	}
+	@media (min-width: 1151.98px) {
+		width: min(calc(100% - 8rem), 80rem);
+		padding: 8rem 0;
+	}
+}
+// @media (min-width:400.98px) {
+
+// }
+// @media (min-width:539.98px) {
+
+// }
+// @media (min-width:767.98px) {
+
+// }
+// @media (min-width: 959.98px) {
+
+// }
+// @media (min-width: 1151.98px) {
+
+// }

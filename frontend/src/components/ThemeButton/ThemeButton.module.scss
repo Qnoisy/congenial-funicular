@@ -1,0 +1,10 @@
+@import '../../common/generall.scss';
+.theme {
+	background-color: rgba(0, 0, 0, 0);
+}
+.theme__btn {
+	@include text-base;
+	display: flex;
+	align-items: center;
+	font-size: 1.3rem;
+}

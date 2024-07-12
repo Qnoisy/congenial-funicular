@@ -1,30 +1,24 @@
-import axios from 'axios';
-import { IUser } from '../../models/IUser';
 import { AppDispatch } from '../store';
 import { userSlice } from './UserSlice';
 
-export const fetchUsers = () => async (dispatch: AppDispatch) => {
-	try {
-		dispatch(userSlice.actions.usersFetching());
-		const response = await axios.get<IUser[]>(
-			'https://jsonplaceholder.typicode.com/users'
-		);
-		dispatch(userSlice.actions.usersFetchingSuccess(response.data));
-	} catch (e) {
-		dispatch(userSlice.actions.usersFetchingError('Error fetching users'));
-	}
-};
+export const loginUser =
+	(username: string, password: string) => async (dispatch: AppDispatch) => {
+		try {
+			dispatch(userSlice.actions.userIsAuth());
+			// Представим, что мы получаем данные пользователя от API
+			if (username === 'admin' && password === 'admin') {
+				const userToken = 'exampleToken123';
+				localStorage.setItem('userToken', userToken);
+				dispatch(userSlice.actions.userIsAuthSuccess(true));
+			} else {
+				throw new Error('Invalid credentials');
+			}
+		} catch (error) {
+			dispatch(userSlice.actions.userIsAuthError('Failed to login'));
+		}
+	};
 
-// export const fetchUsers = createAsyncThunk(
-// 	'user/fetchAll',
-// 	async (_, thunkAPI) => {
-// 		try {
-// 			const response = await axios.get<IUser[]>(
-// 				'https://jsonplaceholder.typicode.com/user2s'
-// 			);
-// 			return response.data;
-// 		} catch (e) {
-// 			return thunkAPI.rejectWithValue('Не удалось загрузить пользователей');
-// 		}
-// 	}
-// );
+export const logoutUser = () => (dispatch: AppDispatch) => {
+	localStorage.removeItem('userToken'); // Удаляем токен из localStorage
+	dispatch(userSlice.actions.userLogout());
+};
