@@ -1,0 +1,6 @@
+@import '../../../common/generall.scss';
+.burger {
+	z-index: 10;
+	width: 80px;
+	@include flex-center;
+}

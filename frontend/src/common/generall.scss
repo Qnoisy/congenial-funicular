@@ -5,7 +5,7 @@
 }
 @mixin text-color($color-var, $transition-time: 200ms, $text-shadow: none) {
 	color: var($color-var);
-	transition: color $transition-time linear;
+	transition: all $transition-time linear;
 	text-shadow: $text-shadow;
 	&,
 	* {
@@ -32,22 +32,9 @@
 	@include text-color(--text-color-second);
 }
 
-@mixin text-secondary-hover {
-	@media (hover: hover) {
-		&:hover {
-			@include text-color(--text-color-second-hover);
-		}
-	}
-	@media (hover: none) {
-		&:hover {
-			@include text-color(--text-color-second-hover);
-		}
-	}
-}
-
 @mixin background-color($background-var, $text-color-var: --text-color) {
 	background-color: var($background-var);
-	transition: background-color 200ms linear;
+	transition: all 200ms linear;
 	@include text-color($text-color-var);
 }
 
@@ -99,17 +86,12 @@ html[data-theme='light'] {
 
 	--text-color: #333333; // темно-серый для текста
 	--text-color-hover: #000000; // черный для наведения
-	--text-color-second: #666666; // средне-серый
+	--text-color-second: #646464; // средне-серый
 	--text-color-second-hover: #888888; // светло-серый
-
-	@include background-primary;
-	@include text-base;
-	@include text-secondary;
-	@include text-secondary-hover;
 }
 
 html[data-theme='dark'] {
-	--button-text-color: #cccccc;
+	--button-text-color: #ffffff;
 	--button-text-color-hover: #ffffff;
 	--button-background-color: #2a2f3a; // темно-серый, более темный оттенок
 	--button-background-color-hover: #3d4451; // еще более темный серо-синий
@@ -123,11 +105,6 @@ html[data-theme='dark'] {
 	--text-color-hover: #ffffff; // белый для наведения
 	--text-color-second: #a2aabc; // светло-серый
 	--text-color-second-hover: #bcbecf; // еще более светлый серый
-
-	@include background-primary;
-	@include text-base;
-	@include text-secondary;
-	@include text-secondary-hover;
 }
 
 @mixin flex-gap($gap: 1rem, $direction: row, $align: center, $justify: center) {
@@ -160,7 +137,6 @@ html[data-theme='dark'] {
 	$shadow-inset: if($inset, 'inset', '');
 	box-shadow: -5px -5px 10px $light-color $shadow-inset,
 		5px 5px 10px $dark-color $shadow-inset;
-	border-radius: 10px; // Можно адаптировать под нужные размеры
 }
 
 @mixin animated-gradient {
@@ -200,13 +176,32 @@ html[data-theme='dark'] {
 	-webkit-backdrop-filter: blur(5px);
 }
 
+*::-webkit-scrollbar {
+	width: 7px;
+	background-color: transparent !important;
+	border-radius: 0.625rem; // закругление углов скроллбара
+}
+
+*::-webkit-scrollbar-track {
+	background: rgb(218, 218, 218);
+	border-radius: 0.625rem; // закругление углов скроллбара
+}
+
+*::-webkit-scrollbar-thumb {
+	background: #888; // цвет самого скроллбара
+	border-radius: 0.625rem; // закругление углов скроллбара
+	&:hover {
+		background: #555; // цвет при наведении
+	}
+}
+
 #root {
 	height: 100%;
 	width: 100%;
 }
 
 .wrapper {
-	@include gradient-lilac;
+	@include gradient-black;
 	display: flex;
 	overflow-x: hidden;
 	flex-direction: column;
@@ -217,4 +212,7 @@ html[data-theme='dark'] {
 	font-family: Arial, Helvetica, sans-serif;
 	line-height: 1.4rem;
 	font-size: 1rem;
+}
+.main__content {
+	padding-bottom: 50px;
 }

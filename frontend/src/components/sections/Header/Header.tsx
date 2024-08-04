@@ -1,4 +1,3 @@
-import { Container } from '../../Container';
 import styles from './Header.module.scss';
 import { Search } from './Search';
 
@@ -7,9 +6,7 @@ import { Search } from './Search';
 export const Header = () => {
 	return (
 		<header className={styles.header}>
-			<Container>
-				<Search />
-			</Container>
+			<Search />
 		</header>
 	);
 };

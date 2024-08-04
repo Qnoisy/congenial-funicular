@@ -1,6 +1,7 @@
 @import '../../../../common/generall.scss';
 
 .search {
+	z-index: 4;
 	border: 1px solid rgba(255, 255, 255, 0.3);
 	@include glass-background;
 	position: fixed;
@@ -11,16 +12,24 @@
 	border-radius: 50%;
 	overflow: hidden;
 	transition: all 0.5s ease;
-	background-color: transparent; // Установите прозрачный фон для начала
+	background-color: transparent;
+
+	@media (min-width: 767.98px) {
+		right: 4rem;
+	}
 
 	&.expanded {
 		width: calc(100% - 2rem);
 		border-radius: 1.25rem;
+		@media (min-width: 767.98px) {
+			width: 30%;
+		}
 	}
 
 	.search__input {
 		@include glass-background;
 		padding-left: 1rem;
+		padding-right: 2rem;
 		position: absolute;
 
 		width: 100%;

@@ -1,2 +1,4 @@
+@import '../../../common/generall.scss';
 .header {
+	@include gradient-lilac;
 }

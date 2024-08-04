@@ -1,2 +1,5 @@
+@import '../../../common/generall.scss';
 .footer {
+	padding: 3rem;
+	@include gradient-black;
 }

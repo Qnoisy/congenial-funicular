@@ -11,3 +11,14 @@ export const publicRoutes = [
 	{ path: '/test', component: <Test /> },
 	{ path: '/login', component: <Login /> },
 ];
+
+export interface MenuItem {
+	title: string;
+	link: string;
+}
+
+export const menuItems: MenuItem[] = [
+	{ title: 'Home', link: '/' },
+	{ title: 'Test', link: '/test' },
+	{ title: 'Test2', link: '/test2' },
+];

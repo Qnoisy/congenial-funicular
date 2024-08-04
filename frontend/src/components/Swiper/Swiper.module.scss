@@ -1,0 +1,33 @@
+@import '../../common/generall.scss';
+
+.swiperWrapper {
+	.slick-slide {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 0;
+		margin: 0 5px;
+	}
+
+	.slideContainer {
+		padding: 0 15px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 1rem;
+		overflow: hidden;
+		img {
+			width: 100%;
+			max-height: 100%;
+			border-radius: 1rem;
+		}
+	}
+
+	.slick-list {
+		margin: 0 -15px;
+	}
+}
+
+.swiperBlock {
+	border-radius: 1rem;
+}
