@@ -1,5 +1,6 @@
 import '../common/generall.scss';
 import '../common/reset.scss';
+import useCustomMediaQueries from '../hooks/useCustomMediaQueries';
 import AppRouter from '../pages/AppRouter';
 import { BottomNav } from './BottomNav';
 import { Footer } from './sections/Footer';
@@ -11,6 +12,8 @@ const Wrapper = () => {
 	// const handleClick = () => {
 	// 	setIsModalActive(!isModalActive);
 	// };
+	const { isSmallScreen, isMediumScreen } = useCustomMediaQueries();
+
 	return (
 		<div className='wrapper'>
 			<Header />
@@ -19,7 +22,7 @@ const Wrapper = () => {
 				<Main />
 				<Footer />
 			</div>
-			<BottomNav />
+			{(!isSmallScreen || !isMediumScreen) && <BottomNav />}
 		</div>
 	);
 };
