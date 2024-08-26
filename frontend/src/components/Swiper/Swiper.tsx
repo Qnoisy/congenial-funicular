@@ -12,7 +12,7 @@ interface Slide {
 
 interface SwiperProps {
 	slides: Slide[];
-	className?: string; // Дополнительный класс для кастомизации стилей
+	className?: string;
 }
 
 const Swiper: React.FC<SwiperProps> = ({ slides, className }) => {
@@ -20,31 +20,52 @@ const Swiper: React.FC<SwiperProps> = ({ slides, className }) => {
 		dots: false,
 		infinite: true,
 		speed: 500,
-		slidesToShow: 1,
-		centerMode: true, // Центрирует слайды
-		centerPadding: '15%', // Устанавливает отступ с левого и правого края
+		slidesToShow: 4,
+		centerMode: true,
+		centerPadding: '5%',
 		autoplay: true,
 		autoplaySpeed: 10000,
 		responsive: [
 			{
-				breakpoint: 1200,
+				breakpoint: 399.98,
 				settings: {
 					slidesToShow: 1,
-					centerPadding: '10%', // Меньший отступ для более широких экранов
+					centerPadding: '0px',
 				},
 			},
 			{
-				breakpoint: 768,
+				breakpoint: 575.98,
 				settings: {
 					slidesToShow: 1,
-					centerPadding: '15%', // Средний отступ для планшетов
+					centerPadding: '0px',
 				},
 			},
 			{
-				breakpoint: 480,
+				breakpoint: 767.98,
 				settings: {
 					slidesToShow: 1,
-					centerPadding: '20%', // Больший отступ для мобильных устройств
+					centerPadding: '15%',
+				},
+			},
+			{
+				breakpoint: 991.98,
+				settings: {
+					slidesToShow: 2,
+					centerPadding: '0px',
+				},
+			},
+			{
+				breakpoint: 1199.98,
+				settings: {
+					slidesToShow: 2,
+					centerPadding: '10%',
+				},
+			},
+			{
+				breakpoint: 1399.98,
+				settings: {
+					slidesToShow: 3,
+					centerPadding: '0px',
 				},
 			},
 		],

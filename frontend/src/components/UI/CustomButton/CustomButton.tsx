@@ -1,18 +1,18 @@
 import classNames from 'classnames';
-import { ButtonHTMLAttributes, ReactNode } from 'react';
+import { ButtonHTMLAttributes } from 'react';
 import styles from './CustomButton.module.scss';
 
 interface CustomButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	onClick?: () => void;
 	className?: string;
-	children: ReactNode;
+	text: string;
 	type?: 'button' | 'submit' | 'reset';
 }
 
 export const CustomButton = ({
 	onClick,
 	className,
-	children,
+	text,
 	type = 'button',
 	...props
 }: CustomButtonProps) => {
@@ -23,7 +23,7 @@ export const CustomButton = ({
 			type={type}
 			{...props}
 		>
-			{children}
+			<strong>{text}</strong>
 		</button>
 	);
 };

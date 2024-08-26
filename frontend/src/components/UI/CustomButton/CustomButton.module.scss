@@ -1,7 +1,8 @@
 @import '../../../common/generall.scss';
+
 .customButton {
 	@include flex-center;
-	padding: 0.5rem 1rem;
 	@include button-style;
-	border-radius: 0.5rem;
+	@include text-special;
+	text-transform: uppercase;
 }

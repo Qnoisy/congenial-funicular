@@ -1,4 +1,22 @@
 @import '../../../common/generall.scss';
-.header {
-	@include gradient-lilac;
+// .header {
+// 	@include gradient-lilac;
+// }
+.customNav__style {
+	flex-direction: column;
+}
+.headerBurger {
+	z-index: 30 !important;
+	justify-content: flex-end;
+}
+.header__row {
+	display: flex;
+	justify-content: space-between;
+	@media (min-width: 575.98px) {
+		padding: 1rem 0;
+	}
+}
+.header__logo {
+	@include flex-center;
+	gap: 2rem;
 }

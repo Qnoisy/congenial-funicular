@@ -1,45 +1,49 @@
 @import '../../../../common/generall.scss';
 
 .search {
-	z-index: 4;
-	border: 1px solid rgba(255, 255, 255, 0.3);
-	@include glass-background;
-	position: fixed;
+	@include border(50%, 2px);
+	position: absolute;
+	z-index: 10;
 	top: 1rem;
-	right: 1rem;
-	width: 2rem;
-	height: 2rem;
-	border-radius: 50%;
+	right: 0rem;
+	width: 2.5rem;
+	height: 2.5rem;
 	overflow: hidden;
 	transition: all 0.5s ease;
-	background-color: transparent;
-
-	@media (min-width: 767.98px) {
-		right: 4rem;
+	@media (min-width: 575.98px) {
+		top: 1.25rem;
+		top: 2.25rem;
+		right: 5rem;
 	}
-
+	background-color: transparent;
 	&.expanded {
-		width: calc(100% - 2rem);
+		width: 100%;
 		border-radius: 1.25rem;
-		@media (min-width: 767.98px) {
+		@media (min-width: 575.98px) {
+			width: 50%;
+		}
+		@media (min-width: 991.98px) {
 			width: 30%;
 		}
 	}
 
 	.search__input {
 		@include glass-background;
+		font-size: 1rem;
 		padding-left: 1rem;
 		padding-right: 2rem;
 		position: absolute;
-
 		width: 100%;
 		height: 100%;
 		opacity: 0;
-		transition: all 0.5s ease;
-		color: #333; // Цвет текста
 	}
 
 	&.expanded .search__input {
+		opacity: 1;
+	}
+	&.expanded .search__btn {
+		transition: all 0.5s ease;
+		transform: rotate(44deg);
 		opacity: 1;
 	}
 
@@ -47,15 +51,16 @@
 		@include flex-center;
 		background-color: transparent;
 		position: absolute;
-		top: -1px;
-		right: -1px;
-		width: 2rem;
-		height: 2rem;
-		border-radius: 50%;
+		width: 2.5rem;
+		height: 2.5rem;
+		top: -3px;
+		right: -2px;
+		transition: all 0.5s ease;
 	}
 
 	.search__icon {
-		font-size: 1.1rem;
-		color: #333;
+		@include text-special;
+		@include text-hover;
+		font-size: 1.4rem;
 	}
 }

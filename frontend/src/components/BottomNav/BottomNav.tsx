@@ -1,14 +1,18 @@
-import { useState } from 'react';
 import { BsFillEmojiSmileFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
+import { menuItems } from '../../router';
 import { ThemeButton } from '../ThemeButton';
 import { CustomNav } from '../UI/CustomNav';
 import styles from './BottomNav.module.scss';
 import { Burger } from './Burger';
 import { BurgerModal } from './BurgerModal';
 
-export const BottomNav = () => {
-	const [isOpen, setOpen] = useState<boolean>(false);
+interface BottomNavProps {
+	isOpen: boolean;
+	setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export const BottomNav = ({ isOpen, setOpen }: BottomNavProps) => {
 	return (
 		<>
 			<nav className={styles.bottomNav}>
@@ -32,13 +36,9 @@ export const BottomNav = () => {
 			</nav>
 			<div className={styles.navBurgerBottom}></div>
 			<BurgerModal isActive={isOpen} setIsActive={setOpen}>
-				<CustomNav
-					customStyles={styles.customNav__style}
-					items={[
-						{ title: 'name', link: '/' },
-						{ title: 'name2', link: '/' },
-					]}
-				/>
+				<div style={{ textAlign: 'center' }}>
+					<CustomNav customStyles={styles.customNav__style} items={menuItems} />
+				</div>
 			</BurgerModal>
 		</>
 	);

@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { ChangeEvent, useState } from 'react';
-import { TfiSearch } from 'react-icons/tfi';
+import { FaMagnifyingGlass } from 'react-icons/fa6';
 import styles from './Search.module.scss';
 
 export const Search = () => {
@@ -32,7 +32,7 @@ export const Search = () => {
 				placeholder='Search...'
 			/>
 			<button className={styles.search__btn} onClick={toggleSearch}>
-				<TfiSearch className={styles.search__icon} />
+				<FaMagnifyingGlass className={styles.search__icon} />
 			</button>
 		</div>
 	);

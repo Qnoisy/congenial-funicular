@@ -24,6 +24,9 @@ export const registrationSchema = Yup.object().shape({
 	lastName,
 	email,
 });
+export const subscribeSchema = Yup.object().shape({
+	email,
+});
 
 export const initialValuesRegistration = {
 	firstName: '',

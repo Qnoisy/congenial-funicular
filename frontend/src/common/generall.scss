@@ -3,6 +3,7 @@
 	align-items: center;
 	justify-content: center;
 }
+
 @mixin text-color($color-var, $transition-time: 200ms, $text-shadow: none) {
 	color: var($color-var);
 	transition: all $transition-time linear;
@@ -12,24 +13,40 @@
 		color: var($color-var);
 	}
 }
+
 @mixin text-base {
 	@include text-color(--text-color);
-}
-@mixin text-hover {
-	@media (hover: hover) {
-		&:hover {
-			@include text-color(--text-color-hover, 100ms, 0 0 50px white);
-		}
-	}
-	@media (hover: none) {
-		&:hover {
-			@include text-color(--text-color-hover, 100ms, 0 0 50px white);
-		}
-	}
+	@include transition;
 }
 
 @mixin text-secondary {
 	@include text-color(--text-color-second);
+	@include transition;
+}
+
+@mixin text-special {
+	@include text-color(--text-color-special);
+	@include transition;
+}
+
+@mixin border($radius: 1rem, $size: 2px) {
+	border-radius: $radius;
+	border: $size solid var(--border-color);
+	@include transition;
+}
+
+@mixin text-hover($color: var(--text-color-hover)) {
+	transition: all 0.3s ease;
+	@media (hover: hover) {
+		&:hover {
+			@include text-color($color);
+		}
+	}
+	@media (hover: none) {
+		&:active {
+			@include text-color($color);
+		}
+	}
 }
 
 @mixin background-color($background-var, $text-color-var: --text-color) {
@@ -38,7 +55,7 @@
 	@include text-color($text-color-var);
 }
 
-@mixin background-primary {
+@mixin background-base {
 	@include background-color(--background-color);
 }
 
@@ -46,87 +63,77 @@
 	@include background-color(--second-background-color, --text-color-second);
 }
 
-@mixin background-tertiary {
-	@include background-color(--third-background-color);
-}
-
 @mixin button-style {
-	color: var(--button-text-color);
+	@include border;
 	background-color: var(--button-background-color);
-	border: 2px solid var(--button-border-color);
-	transition: all 0.3s ease;
+	transition: background-color 0.3s ease, color 0.3s ease;
+	padding: 0.75rem;
+	width: 100%;
+	font-size: 1rem;
+	line-height: 1rem;
 
 	@media (hover: hover) {
 		&:hover {
 			@include text-color(--button-text-color-hover, 0.3s);
 			background-color: var(--button-background-color-hover);
-			border-color: var(--button-border-color);
 		}
 	}
 
 	@media (hover: none) {
-		&:active {
+		&:focus {
 			@include text-color(--button-text-color-hover, 0.3s);
 			background-color: var(--button-background-color-hover);
-			border-color: var(--button-border-color);
+			transition: background-color 0.3s ease, color 0.3s ease;
 		}
 	}
 }
 
 html[data-theme='light'] {
-	--button-text-color: #333333;
-	--button-text-color-hover: #ffffff;
-	--button-background-color: #ffffff;
-	--button-background-color-hover: #a8c0e6; // светлый голубой, соответствует градиенту
-	--button-border-color: #bcced9; // светло-голубой
+	--button-text-color: #001317;
+	--button-text-color-hover: #cfdef3;
 
-	--background-color: #e0eafc; // основной цвет фона, светло-сиреневый
-	--second-background-color: #cfdef3; // вторичный цвет фона, мягкий голубой
-	--third-background-color: #b3e5fc; // третий цвет фона, яркий голубой
+	--button-background-color: #cfdef3;
+	--button-background-color-hover: #001317;
 
-	--text-color: #333333; // темно-серый для текста
-	--text-color-hover: #000000; // черный для наведения
-	--text-color-second: #646464; // средне-серый
-	--text-color-second-hover: #888888; // светло-серый
+	--button-border-color: #001317;
+
+	--background-color: #cfdef3;
+	--second-background-color: #001317;
+
+	--text-color: #001317;
+	--text-color-hover: #cfdef3;
+
+	--text-color-second: #cfdef3;
+	--text-color-second-hover: #001317;
+
+	--text-color-special: #fecd8c;
+	--text-color-special-hover: #ffdaaa;
+
+	--border-color: #001317;
 }
 
 html[data-theme='dark'] {
-	--button-text-color: #ffffff;
-	--button-text-color-hover: #ffffff;
-	--button-background-color: #2a2f3a; // темно-серый, более темный оттенок
-	--button-background-color-hover: #3d4451; // еще более темный серо-синий
-	--button-border-color: #414a59; // темный серый
+	--button-text-color: #fecd8c;
+	--button-text-color-hover: #001317;
 
-	--background-color: #252931; // очень темный серо-синий
-	--second-background-color: #1e2229; // более темный серый
-	--third-background-color: #313943; // темный серо-синий
+	--button-background-color: #001317;
+	--button-background-color-hover: #cfdef3;
 
-	--text-color: #e0e0e0; // светло-серый для текста
-	--text-color-hover: #ffffff; // белый для наведения
-	--text-color-second: #a2aabc; // светло-серый
-	--text-color-second-hover: #bcbecf; // еще более светлый серый
-}
+	--button-border-color: #cfdef3;
 
-@mixin flex-gap($gap: 1rem, $direction: row, $align: center, $justify: center) {
-	display: flex;
-	flex-direction: $direction;
-	gap: $gap;
-	align-items: $align;
-	justify-content: $justify;
-}
+	--background-color: #001317;
+	--second-background-color: #cfdef3;
 
-@mixin box-shadow(
-	$x: 0,
-	$y: 2px,
-	$blur: 8px,
-	$spread: 0,
-	$color: rgba(0, 0, 0, 0.2)
-) {
-	box-shadow: $x $y $blur $spread $color;
-}
+	--text-color: #cfdef3;
+	--text-color-hover: #001317;
 
-@mixin transition($property: all, $duration: 300ms, $timing-function: ease) {
-	transition: $property $duration $timing-function;
+	--text-color-second: #001317;
+	--text-color-second-hover: #cfdef3;
+
+	--text-color-special: #fecd8c;
+	--text-color-special-hover: #ffdaaa;
+
+	--border-color: #cfdef3;
 }
 
 @mixin neumorphism(
@@ -137,6 +144,19 @@ html[data-theme='dark'] {
 	$shadow-inset: if($inset, 'inset', '');
 	box-shadow: -5px -5px 10px $light-color $shadow-inset,
 		5px 5px 10px $dark-color $shadow-inset;
+}
+
+@mixin gradient-black {
+	background-image: linear-gradient(to right, #000a0c, #001317);
+}
+
+@mixin gradient-lilac {
+	background-image: linear-gradient(to right, #b8c6e5, #cfdef3);
+	@include animated-gradient;
+}
+
+@mixin transition($property: all, $duration: 300ms, $timing-function: ease) {
+	transition: $property $duration $timing-function;
 }
 
 @mixin animated-gradient {
@@ -156,16 +176,6 @@ html[data-theme='dark'] {
 	}
 }
 
-@mixin gradient-black {
-	background-image: linear-gradient(to right, #000000, #434343);
-	@include neumorphism;
-}
-
-@mixin gradient-lilac {
-	background-image: linear-gradient(to right, #b8c6e5, #cfdef3);
-	@include animated-gradient;
-}
-
 @mixin glass-background {
 	background: rgba(255, 255, 255, 0.2);
 	box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.15),
@@ -174,6 +184,23 @@ html[data-theme='dark'] {
 		inset -5px -5px 10px rgba(255, 255, 255, 0.05);
 	backdrop-filter: blur(5px);
 	-webkit-backdrop-filter: blur(5px);
+}
+@mixin flex-gap($gap: 1rem, $direction: row, $align: left, $justify: center) {
+	display: flex;
+	flex-direction: $direction;
+	gap: $gap;
+	align-items: $align;
+	justify-content: $justify;
+}
+
+@mixin box-shadow(
+	$x: 0,
+	$y: 2px,
+	$blur: 8px,
+	$spread: 0,
+	$color: rgba(0, 0, 0, 0.2)
+) {
+	box-shadow: $x $y $blur $spread $color;
 }
 
 *::-webkit-scrollbar {
@@ -194,6 +221,17 @@ html[data-theme='dark'] {
 		background: #555; // цвет при наведении
 	}
 }
+@mixin no-select {
+	-webkit-user-select: none; /* Chrome/Safari */
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+ */
+	user-select: none; /* Standard */
+}
+
+// Отключение подсветки блока при нажатии
+@mixin no-highlight {
+	-webkit-tap-highlight-color: transparent; /* Отключение подсветки при нажатии */
+}
 
 #root {
 	height: 100%;
@@ -202,17 +240,27 @@ html[data-theme='dark'] {
 
 .wrapper {
 	@include gradient-black;
+	@include text-base;
 	display: flex;
 	overflow-x: hidden;
 	flex-direction: column;
-	min-height: 100%;
 
 	transition: background-color 200ms linear;
 
-	font-family: Arial, Helvetica, sans-serif;
-	line-height: 1.4rem;
+	font-family: 'Rubik', sans-serif;
+	line-height: 1.75rem;
+	letter-spacing: 0.5px;
 	font-size: 1rem;
+
+	@include no-select;
+	@include no-highlight;
 }
 .main__content {
 	padding-bottom: 50px;
+	@media (min-width: 539.98px) {
+		padding-bottom: 0;
+	}
+}
+strong {
+	font-weight: 700;
 }

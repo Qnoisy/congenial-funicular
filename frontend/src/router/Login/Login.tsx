@@ -38,7 +38,7 @@ export const Login = () => {
 					placeholder='Enter your password'
 					type='password'
 				/>
-				<CustomButton type='submit'>Submit</CustomButton>
+				<CustomButton type='submit' text='Submit'></CustomButton>
 			</Form>
 		</Formik>
 	);

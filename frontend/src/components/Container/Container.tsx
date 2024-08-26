@@ -11,7 +11,7 @@ export const Container = ({ children, section = false }: ContainerProps) => {
 	return (
 		<div
 			className={classNames(styles.container, {
-				[styles.container__padding]: !section,
+				[styles['container__padding-disabled']]: !section,
 			})}
 		>
 			{children}

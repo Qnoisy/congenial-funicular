@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import '../common/generall.scss';
 import '../common/reset.scss';
 import useCustomMediaQueries from '../hooks/useCustomMediaQueries';
@@ -8,21 +9,20 @@ import { Header } from './sections/Header';
 import Main from './sections/Main/Main';
 
 const Wrapper = () => {
-	// const [isModalActive, setIsModalActive] = useState<boolean>(false);
-	// const handleClick = () => {
-	// 	setIsModalActive(!isModalActive);
-	// };
+	const [isOpen, setOpen] = useState<boolean>(false);
 	const { isSmallScreen, isMediumScreen } = useCustomMediaQueries();
 
 	return (
 		<div className='wrapper'>
-			<Header />
+			<Header isOpen={isOpen} setOpen={setOpen} />
 			<div className='main__content'>
 				<AppRouter />
 				<Main />
 				<Footer />
 			</div>
-			{(!isSmallScreen || !isMediumScreen) && <BottomNav />}
+			{(!isSmallScreen || !isMediumScreen) && (
+				<BottomNav isOpen={isOpen} setOpen={setOpen} />
+			)}
 		</div>
 	);
 };

@@ -1,14 +1,16 @@
+import classNames from 'classnames';
 import Hamburger from 'hamburger-react';
 import styles from './Burger.module.scss';
 
 interface BurgerProps {
 	isOpen: boolean;
 	setOpen: React.Dispatch<React.SetStateAction<boolean>> | undefined;
+	customStyle?: string;
 }
 
-export const Burger = ({ isOpen, setOpen }: BurgerProps) => {
+export const Burger = ({ isOpen, setOpen, customStyle }: BurgerProps) => {
 	return (
-		<div className={styles.burger}>
+		<div className={classNames(styles.burger, customStyle)}>
 			<Hamburger toggled={isOpen} toggle={setOpen} />
 		</div>
 	);

@@ -5,10 +5,15 @@ import styles from './CustomNav.module.scss';
 
 interface CustomNavProps {
 	items: MenuItem[];
+	disableAnimation?: boolean;
 	customStyles?: string;
 }
 
-export const CustomNav = ({ items, customStyles }: CustomNavProps) => {
+export const CustomNav = ({
+	items,
+	disableAnimation = false,
+	customStyles,
+}: CustomNavProps) => {
 	const location = useLocation();
 
 	return (
@@ -21,9 +26,10 @@ export const CustomNav = ({ items, customStyles }: CustomNavProps) => {
 						to={item.link}
 						className={classNames(styles.customNav__items, {
 							[styles.active]: isActive,
+							[styles.noLine]: disableAnimation,
 						})}
 					>
-						{item.title}
+						<strong>{item.title}</strong>
 					</Link>
 				);
 			})}

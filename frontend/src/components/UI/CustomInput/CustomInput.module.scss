@@ -1,34 +1,19 @@
 @import '../../../common/generall.scss';
+
 .inputWrapper {
-	@include flex-gap(1rem, column);
+	@include flex-gap(0rem, column);
 	margin-bottom: 1rem;
 }
 
 .label {
 	font-size: 1rem;
-	color: var(--text-color);
 	margin-bottom: 0.5rem;
 }
 
 .customInput {
-	padding: 0.5rem;
-	border: 1px solid var(--button-border-color);
-	border-radius: 4px;
-	@include transition(border-color 200ms ease);
-
-	&:focus {
-		border-color: var(--button-background-color-hover);
-		outline: none;
-		@include box-shadow(0, 2px, 8px, 0, rgba(0, 0, 0, 0.2));
-	}
+	@include button-style;
 
 	&.error {
-		border-color: #ff0000;
+		border-color: #830000;
 	}
-}
-
-.errorText {
-	color: #ff0000;
-	font-size: 0.875rem;
-	margin-top: 0.25rem;
 }

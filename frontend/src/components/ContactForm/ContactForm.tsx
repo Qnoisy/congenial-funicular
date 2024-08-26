@@ -35,7 +35,7 @@ export const ContactForm = () => {
 					placeholder='Your email address'
 					type='email'
 				/>
-				<CustomButton type='submit'>Submit</CustomButton>
+				<CustomButton type='submit' text='Submit'></CustomButton>
 			</Form>
 		</Formik>
 	);

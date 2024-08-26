@@ -12,6 +12,12 @@ const slides = [
 	{
 		image: 'https://picsum.photos/800/400?random=3',
 	},
+	{
+		image: 'https://picsum.photos/800/400?random=4',
+	},
+	{
+		image: 'https://picsum.photos/800/400?random=5',
+	},
 ];
 
 const Main: React.FC = () => {

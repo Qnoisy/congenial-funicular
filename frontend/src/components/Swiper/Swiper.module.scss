@@ -1,33 +1,44 @@
-@import '../../common/generall.scss';
-
 .swiperWrapper {
 	.slick-slide {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		padding: 0;
-		margin: 0 5px;
+		padding: 0 1rem !important; // Отступы по умолчанию для мобильных устройств
 	}
 
 	.slideContainer {
-		padding: 0 15px;
+		padding: 0 1rem;
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		border-radius: 1rem;
 		overflow: hidden;
 		img {
 			width: 100%;
 			max-height: 100%;
-			border-radius: 1rem;
+			object-fit: cover;
 		}
 	}
 
 	.slick-list {
-		margin: 0 -15px;
+		margin: 0;
 	}
 }
 
-.swiperBlock {
-	border-radius: 1rem;
+@media (min-width: 319.98px) {
+	.slideContainer {
+		height: 22.5rem;
+		img {
+			height: 100%;
+			border-radius: 1rem;
+		}
+	}
+}
+
+@media (min-width: 1199.98px) {
+	.slideContainer {
+		height: 28rem;
+		img {
+			border-radius: 2rem;
+		}
+	}
 }

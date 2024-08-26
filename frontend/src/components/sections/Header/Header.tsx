@@ -1,12 +1,48 @@
+import useCustomMediaQueries from '../../../hooks/useCustomMediaQueries';
+import { menuItems } from '../../../router';
+import { Burger } from '../../BottomNav/Burger';
+import { BurgerModal } from '../../BottomNav/BurgerModal';
+import { Container } from '../../Container';
+import { Logo } from '../../Logo';
+import { CustomNav } from '../../UI/CustomNav';
 import styles from './Header.module.scss';
 import { Search } from './Search';
 
-// interface HeaderProps {}
+interface HeaderProps {
+	isOpen: boolean;
+	setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-export const Header = () => {
+export const Header = ({ isOpen, setOpen }: HeaderProps) => {
+	const { isMediumScreen, isLargeScreen } = useCustomMediaQueries();
 	return (
 		<header className={styles.header}>
-			<Search />
+			<Container>
+				<div className={styles.header__row}>
+					{(isLargeScreen || isMediumScreen) && (
+						<div className={styles.header__logo}>
+							<Logo />
+							<CustomNav items={menuItems} />
+						</div>
+					)}
+					<Search />
+					{(isLargeScreen || isMediumScreen) && (
+						<Burger
+							isOpen={isOpen}
+							setOpen={setOpen}
+							customStyle={styles.headerBurger}
+						/>
+					)}
+				</div>
+				<BurgerModal isActive={isOpen} setIsActive={setOpen}>
+					<div style={{ textAlign: 'center' }}>
+						<CustomNav
+							customStyles={styles.customNav__style}
+							items={menuItems}
+						/>
+					</div>
+				</BurgerModal>
+			</Container>
 		</header>
 	);
 };
