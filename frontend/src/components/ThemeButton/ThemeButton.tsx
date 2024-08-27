@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { MdLightMode, MdOutlineLightMode } from 'react-icons/md';
-import { useTheme } from '../../hooks/useTheme';
+import { useTheme } from '../../hooks/useTheme'; // Импортируем хук useTheme
 import styles from './ThemeButton.module.scss';
 
 interface ThemeButtonProps {

@@ -3,7 +3,6 @@
 .customNav {
 	display: flex;
 	gap: 1rem;
-	@include text-base;
 }
 
 .customNav__items {
@@ -35,7 +34,7 @@
 .active {
 	@include text-special;
 	&::after {
-		width: 100%; /* Линия полностью видима, если роут активен */
+		width: 100%;
 		background-color: currentColor;
 	}
 }

@@ -9,7 +9,7 @@ import { FooterForm } from './FooterForm';
 
 export const Footer = () => {
 	return (
-		<footer className={classNames(styles.footer, 'gradient-black')}>
+		<footer className={classNames(styles.footer)}>
 			<Container section>
 				<div className={styles.footer__row}>
 					<div className={styles['block-1']}>

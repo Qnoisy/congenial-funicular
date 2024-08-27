@@ -29,9 +29,9 @@
 	@include transition;
 }
 
-@mixin border($radius: 1rem, $size: 2px) {
+@mixin border($radius: 1rem, $size: 2px, $color: var(--border-color)) {
 	border-radius: $radius;
-	border: $size solid var(--border-color);
+	border: $size solid $color;
 	@include transition;
 }
 
@@ -106,10 +106,13 @@ html[data-theme='light'] {
 	--text-color-second: #cfdef3;
 	--text-color-second-hover: #001317;
 
-	--text-color-special: #fecd8c;
+	--text-color-special: #db9428;
 	--text-color-special-hover: #ffdaaa;
 
 	--border-color: #001317;
+
+	--gradient-background-top: linear-gradient(to right, #000a0c, #001317);
+	--gradient-background-bottom: linear-gradient(to right, #b8c6e5, #cfdef3);
 }
 
 html[data-theme='dark'] {
@@ -134,6 +137,9 @@ html[data-theme='dark'] {
 	--text-color-special-hover: #ffdaaa;
 
 	--border-color: #cfdef3;
+
+	--gradient-background-top: linear-gradient(to right, #fecd8c, #cfdef3);
+	--gradient-background-bottom: linear-gradient(to right, #000a0c, #001317);
 }
 
 @mixin neumorphism(
@@ -144,19 +150,6 @@ html[data-theme='dark'] {
 	$shadow-inset: if($inset, 'inset', '');
 	box-shadow: -5px -5px 10px $light-color $shadow-inset,
 		5px 5px 10px $dark-color $shadow-inset;
-}
-
-@mixin gradient-black {
-	background-image: linear-gradient(to right, #000a0c, #001317);
-}
-
-@mixin gradient-lilac {
-	background-image: linear-gradient(to right, #b8c6e5, #cfdef3);
-	@include animated-gradient;
-}
-
-@mixin transition($property: all, $duration: 300ms, $timing-function: ease) {
-	transition: $property $duration $timing-function;
 }
 
 @mixin animated-gradient {
@@ -174,6 +167,27 @@ html[data-theme='dark'] {
 			background-position: 0% 50%;
 		}
 	}
+}
+@mixin gradient-top {
+	background-image: var(--gradient-background-top);
+	@include animated-gradient;
+}
+@mixin gradient-bottom {
+	background-image: var(--gradient-background-bottom);
+	@include animated-gradient;
+}
+// @mixin gradient-black {
+// 	background-image: linear-gradient(to right, #000a0c, #001317);
+// 	@include animated-gradient;
+// }
+
+// @mixin gradient-lilac {
+// 	background-image: linear-gradient(to right, #b8c6e5, #cfdef3);
+// 	@include animated-gradient;
+// }
+
+@mixin transition($property: all, $duration: 300ms, $timing-function: ease) {
+	transition: $property $duration $timing-function;
 }
 
 @mixin glass-background {
@@ -239,7 +253,7 @@ html[data-theme='dark'] {
 }
 
 .wrapper {
-	@include gradient-black;
+	@include gradient-bottom;
 	@include text-base;
 	display: flex;
 	overflow-x: hidden;
@@ -257,7 +271,7 @@ html[data-theme='dark'] {
 }
 .main__content {
 	padding-bottom: 50px;
-	@media (min-width: 539.98px) {
+	@media (min-width: 575.98px) {
 		padding-bottom: 0;
 	}
 }

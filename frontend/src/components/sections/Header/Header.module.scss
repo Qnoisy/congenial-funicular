@@ -1,7 +1,8 @@
 @import '../../../common/generall.scss';
-// .header {
-// 	@include gradient-lilac;
-// }
+.header {
+	@include gradient-top;
+	@include text-secondary;
+}
 .customNav__style {
 	flex-direction: column;
 }
