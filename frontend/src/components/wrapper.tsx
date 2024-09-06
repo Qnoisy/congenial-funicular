@@ -7,6 +7,7 @@ import { BottomNav } from './BottomNav';
 import { Footer } from './sections/Footer';
 import { Header } from './sections/Header';
 import Main from './sections/Main/Main';
+import { MainHeader } from './sections/MainHeader';
 
 const Wrapper = () => {
 	const [isOpen, setOpen] = useState<boolean>(false);
@@ -15,6 +16,7 @@ const Wrapper = () => {
 	return (
 		<div className='wrapper'>
 			<Header isOpen={isOpen} setOpen={setOpen} />
+			<MainHeader />
 			<div className='main__content'>
 				<AppRouter />
 				<Main />

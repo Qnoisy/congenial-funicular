@@ -1,6 +1,7 @@
 import React from 'react';
 import Swiper from '../../Swiper/Swiper';
 import styles from './Main.module.scss';
+import { MainInfo } from './MainInfo';
 
 const slides = [
 	{
@@ -23,6 +24,7 @@ const slides = [
 const Main: React.FC = () => {
 	return (
 		<main className={styles.main}>
+			<MainInfo />
 			<Swiper slides={slides} />
 		</main>
 	);

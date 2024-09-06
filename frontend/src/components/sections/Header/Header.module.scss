@@ -1,12 +1,25 @@
 @import '../../../common/generall.scss';
 .header {
-	@include gradient-top;
-	@include text-secondary;
+	// @include gradient-top;
+
+	position: relative;
+	z-index: 1;
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 100%; /* Покрытие всей высоты хедера */
+		background: rgba(0, 0, 0, 0.3);
+		z-index: -1; /* Помещаем градиент позади основного контента */
+	}
 }
 .customNav__style {
 	flex-direction: column;
 }
 .headerBurger {
+	@include text-secondary;
 	z-index: 30 !important;
 	justify-content: flex-end;
 }

@@ -1,0 +1,58 @@
+@import '../../../../common/generall.scss';
+.mainInfo {
+}
+.mainInfo__block {
+	position: relative;
+	display: grid;
+	@media (min-width: 991.98px) {
+		gap: 2rem;
+		grid-template-columns: repeat(12, minmax(0, 1fr));
+	}
+}
+.mainInfo__img {
+	position: relative;
+	min-height: 300px;
+	width: 100%;
+	object-position: 50% 50%;
+	color: transparent;
+	background-color: rgb(114, 114, 114);
+	border-radius: 1rem;
+
+	@media (min-width: 991.98px) {
+		align-self: center;
+		position: absolute;
+		grid-column: 1 / 9;
+		height: 75%;
+		inset: 0;
+		border-radius: 1.5rem;
+	}
+}
+.mainInfo__content {
+	@include background-base;
+	position: relative;
+	top: -4rem;
+	padding: 2rem;
+	border-radius: 1rem;
+	margin: 0 1.5rem;
+
+	@media (min-width: 991.98px) {
+		top: 0;
+		grid-column: 7 / 13;
+		border-radius: 1.5rem;
+	}
+}
+.mainInfo__title {
+	@include text-special;
+	font-size: 1.5rem;
+	margin-bottom: 1.5rem;
+	@media (min-width: 991.98px) {
+		font-size: 2.25rem;
+	}
+}
+.mainInfo__text {
+	font-size: 1rem;
+	margin-bottom: 1.5rem;
+	@media (min-width: 991.98px) {
+		font-size: 1.125rem;
+	}
+}

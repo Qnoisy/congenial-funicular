@@ -16,17 +16,14 @@
 
 @mixin text-base {
 	@include text-color(--text-color);
-	@include transition;
 }
 
 @mixin text-secondary {
 	@include text-color(--text-color-second);
-	@include transition;
 }
 
 @mixin text-special {
 	@include text-color(--text-color-special);
-	@include transition;
 }
 
 @mixin border($radius: 1rem, $size: 2px, $color: var(--border-color)) {
@@ -106,13 +103,13 @@ html[data-theme='light'] {
 	--text-color-second: #cfdef3;
 	--text-color-second-hover: #001317;
 
-	--text-color-special: #db9428;
+	--text-color-special: #375475;
 	--text-color-special-hover: #ffdaaa;
 
 	--border-color: #001317;
 
 	--gradient-background-top: linear-gradient(to right, #000a0c, #001317);
-	--gradient-background-bottom: linear-gradient(to right, #b8c6e5, #cfdef3);
+	--gradient-background-bottom: linear-gradient(to right, #dee9ff, #cfdef3);
 }
 
 html[data-theme='dark'] {

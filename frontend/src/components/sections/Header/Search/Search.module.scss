@@ -60,7 +60,7 @@
 	}
 
 	.search__icon {
-		@include text-special;
+		@include text-secondary;
 		@include text-hover;
 		font-size: 1.4rem;
 	}
