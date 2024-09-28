@@ -17,11 +17,9 @@ const Wrapper = () => {
 		<div className='wrapper'>
 			<Header isOpen={isOpen} setOpen={setOpen} />
 			<MainHeader />
-			<div className='main__content'>
-				<AppRouter />
-				<Main />
-				<Footer />
-			</div>
+			<AppRouter />
+			<Main />
+			<Footer />
 			{(!isSmallScreen || !isMediumScreen) && (
 				<BottomNav isOpen={isOpen} setOpen={setOpen} />
 			)}

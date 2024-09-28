@@ -3,31 +3,43 @@ import { Container } from '../../../Container';
 import { CustomButton } from '../../../UI/CustomButton';
 import styles from './MainInfo.module.scss';
 
-// interface MainInfoProps {
+// Определяем тип для пропсов
+interface MainInfoProps {
+	data: {
+		id: number;
+		title?: string;
+		description: string;
+		additionalText?: string; // Второй абзац, который может быть опциональным
+		image: string;
+	};
+	imagePosition?: 'left' | 'right'; // Пропс для управления позицией картинки
+}
 
-// }
-
-export const MainInfo = () => {
+export const MainInfo = ({ data, imagePosition = 'left' }: MainInfoProps) => {
 	return (
 		<div className={styles.mainInfo}>
 			<Container section>
-				<div className={classNames(styles.mainInfo__block, styles.CustomStyle)}>
-					<div className={styles.mainInfo__img}></div>
+				<div
+					className={classNames(styles.mainInfo__block, {
+						[styles.rightImage]: imagePosition === 'right',
+					})}
+				>
+					<div className={styles.mainInfo__img}>
+						<img src={data.image} alt={data.title || 'Image'} />
+					</div>
 					<div className={styles.mainInfo__content}>
-						<h2 className={styles.mainInfo__title}>
-							<strong>Lorem ipsum dolor sit amet.</strong>
-						</h2>
-						<p className={styles.mainInfo__text}>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit.
-							Distinctio quam eius, soluta fuga adipisci doloribus, aperiam
-							provident quos, deserunt incidunt quasi nostrum impedit nihil
-							accusamus architecto in illum. Aliquid, quibusdam!
-						</p>
-						<p className={styles.mainInfo__text}>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit.
-							Distinctio quam eius, soluta fuga adipisci doloribus, aperiam
-						</p>
-						<CustomButton text='button'></CustomButton>
+						{data.title && (
+							<h2 className={styles.mainInfo__title}>
+								<strong>{data.title}</strong>
+							</h2>
+						)}
+						<p className={styles.mainInfo__text}>{data.description}</p>
+
+						{data.additionalText && (
+							<p className={styles.mainInfo__text}>{data.additionalText}</p>
+						)}
+
+						<CustomButton text='Подробнее' />
 					</div>
 				</div>
 			</Container>

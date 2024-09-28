@@ -2,7 +2,4 @@
 .main {
 	flex: 1 0 auto;
 	@include gradient-top;
-	border-bottom-left-radius: 5rem;
-	border-bottom-right-radius: 5rem;
-	padding-bottom: 5rem;
 }

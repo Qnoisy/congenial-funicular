@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import useCustomMediaQueries from '../../../hooks/useCustomMediaQueries';
 import { menuItems } from '../../../router';
 import { Burger } from '../../BottomNav/Burger';
@@ -30,7 +31,9 @@ export const Header = ({ isOpen, setOpen }: HeaderProps) => {
 						<Burger
 							isOpen={isOpen}
 							setOpen={setOpen}
-							customStyle={styles.headerBurger}
+							customStyle={classNames(styles.headerBurger, {
+								[styles.header__open]: isOpen,
+							})}
 						/>
 					)}
 				</div>

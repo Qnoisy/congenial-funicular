@@ -1,8 +1,10 @@
 @import '../../../common/generall.scss';
 .header {
 	// @include gradient-top;
-
-	position: relative;
+	position: fixed;
+	width: 100%;
+	left: 0;
+	top: 0;
 	z-index: 1;
 	&::before {
 		content: '';
@@ -11,7 +13,7 @@
 		left: 0;
 		right: 0;
 		height: 100%; /* Покрытие всей высоты хедера */
-		background: rgba(0, 0, 0, 0.3);
+		background: rgba(0, 0, 0, 0.6);
 		z-index: -1; /* Помещаем градиент позади основного контента */
 	}
 }
@@ -19,7 +21,7 @@
 	flex-direction: column;
 }
 .headerBurger {
-	@include text-secondary;
+	@include text-base;
 	z-index: 30 !important;
 	justify-content: flex-end;
 }
@@ -33,4 +35,7 @@
 .header__logo {
 	@include flex-center;
 	gap: 2rem;
+}
+.header__open {
+	@include text-secondary;
 }
